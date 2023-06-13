@@ -2,7 +2,7 @@ package com.bitespeed.identify.entitty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class IdentityRequest {
+public class IdentifyRequest {
     @JsonProperty("email")
     private String email;
     @JsonProperty("phoneNumber")

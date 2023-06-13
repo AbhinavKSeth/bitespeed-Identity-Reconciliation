@@ -1,7 +1,7 @@
 package com.bitespeed.identify.controller;
 
-import com.bitespeed.identify.entitty.IdentityRequest;
-import com.bitespeed.identify.entitty.IdentityResponse;
+import com.bitespeed.identify.entitty.IdentifyRequest;
+import com.bitespeed.identify.entitty.IdentifyResponse;
 import com.bitespeed.identify.service.IdentifyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +20,12 @@ public class IdentityController {
     private IdentifyServiceImpl identifyService;
 
     @PostMapping("/identify")
-    public ResponseEntity<IdentityResponse> getAllContacts(@Validated @RequestBody IdentityRequest identityRequest) {
+    public ResponseEntity<IdentifyResponse> getAllContacts(@Validated @RequestBody IdentifyRequest identifyRequest) {
         // Implement
-        if  (identityRequest==null||(identityRequest.getEmail()==null&&identityRequest.getPhoneNumber()==null)){
+        if  (identifyRequest ==null||(identifyRequest.getEmail()==null&& identifyRequest.getPhoneNumber()==null)){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // Return bad request error
         }
-        IdentityResponse response = identifyService.getAllContacts(identityRequest);
+        IdentifyResponse response = identifyService.getAllContacts(identifyRequest);
         return ResponseEntity.ok().body(response);
     }
 }

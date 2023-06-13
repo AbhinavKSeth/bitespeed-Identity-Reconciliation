@@ -1,8 +1,8 @@
 package com.bitespeed.identify.service;
 
 import com.bitespeed.identify.entitty.Contact;
-import com.bitespeed.identify.entitty.IdentityRequest;
-import com.bitespeed.identify.entitty.IdentityResponse;
+import com.bitespeed.identify.entitty.IdentifyRequest;
+import com.bitespeed.identify.entitty.IdentifyResponse;
 import com.bitespeed.identify.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +16,16 @@ public class IdentifyServiceImpl {
     private ContactRepository contactRepository;
 
     @Transactional
-    public IdentityResponse getAllContacts(IdentityRequest identityRequest){
-        String phoneNumber = identityRequest.getPhoneNumber();
-        String email =identityRequest.getEmail();
+    public IdentifyResponse getAllContacts(IdentifyRequest identifyRequest){
+        String phoneNumber = identifyRequest.getPhoneNumber();
+        String email = identifyRequest.getEmail();
         if (phoneNumber!=null && email!=null){
             return buildResponseWhenBothExists(phoneNumber,email);
         }
         return buildResponseWhenOneExists(phoneNumber,email);
     }
 
-    private IdentityResponse buildResponseWhenOneExists(String phoneNumber, String email) {
+    private IdentifyResponse buildResponseWhenOneExists(String phoneNumber, String email) {
         int primaryKey=-1;
         List<Contact> contactList;
         if (phoneNumber!=null){
@@ -41,7 +41,7 @@ public class IdentifyServiceImpl {
         return buildResponse(primaryKey);
     }
 
-    private IdentityResponse buildResponseWhenBothExists(String phoneNumber, String email) {
+    private IdentifyResponse buildResponseWhenBothExists(String phoneNumber, String email) {
         List<Contact> contactList = contactRepository.findByPhoneNumberOrEmail(phoneNumber, email);
 
         Set<Integer> primaryKeys = new HashSet<>();
@@ -107,13 +107,13 @@ public class IdentifyServiceImpl {
         return contact.getId();
     }
 
-    public IdentityResponse buildResponse(Integer primaryKey) {
+    public IdentifyResponse buildResponse(Integer primaryKey) {
         // Fetch records from the table where linkPrecedence is equal to primaryKey
         List<Contact> contacts = contactRepository.findByLinkedId(primaryKey);
         Contact primaryContact = contactRepository.findById(primaryKey).get();
 
         // Build the IdentityResponse object using the fetched records
-        IdentityResponse response = new IdentityResponse();
+        IdentifyResponse response = new IdentifyResponse();
         response.setPrimaryContactId(primaryKey);
 
         Set<String> emails = new HashSet<>();

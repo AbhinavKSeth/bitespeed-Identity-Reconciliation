@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 @JsonTypeName("contact")
-public class IdentityResponse {
+public class IdentifyResponse {
     private int primaryContactId;
     private List<String> emails;
     private List<String> phoneNumbers;
