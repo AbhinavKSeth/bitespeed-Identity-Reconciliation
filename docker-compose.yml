@@ -1,9 +1,26 @@
 version: '3.0'
 
 services:
-  dynamodb:
-    image: mysql/mysql-server:latest
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    volumes:
+      - ./src/test/resources/init.sql:/data/application/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
     restart: always
     ports:
-      - '3306:3306'
-    container_name: mysqldb
+      - "3310:3306"
+    command: --init-file /data/application/init.sql
+
+  app:
+    image: identify-docker-image:latest
+    container_name: identify-docker-container
+    ports:
+      - '8888:8888'
+    depends_on:
+      - mysql
+
+volumes:
+  db:
+    driver: local
