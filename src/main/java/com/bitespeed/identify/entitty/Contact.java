@@ -11,25 +11,25 @@ import java.sql.Timestamp;
 public class Contact {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "phonenumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "email")
     private String email;
-    @Column(name = "linkedid")
+    @Column(name = "linked_id")
     private Integer linkedId;
 //    @Enumerated(EnumType.STRING)
-    @Column(name = "linkprecedence")
+    @Column(name = "link_precedence")
     private String linkPrecedence;
     @CreationTimestamp
-    @Column(name = "createdat")
+    @Column(name = "created_at")
     private  Timestamp createdAt;
     @UpdateTimestamp
-    @Column(name = "updatedat")
+    @Column(name = "updated_at")
     private  Timestamp updatedAt;
-    @Column(name = "deletedat")
+    @Column(name = "deleted_at")
     private Timestamp deletedAt;
 
 
