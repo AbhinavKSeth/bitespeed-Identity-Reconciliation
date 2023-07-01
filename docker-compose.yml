@@ -1,9 +1,9 @@
 version: '3.0'
 
 services:
-  mysql:
+  db:
     image: mysql:latest
-    container_name: mysql
+    container_name: mysql-container
     volumes:
       - ./src/test/resources/init.sql:/data/application/init.sql
     environment:
@@ -17,9 +17,12 @@ services:
     image: identify-docker-image:latest
     container_name: identify-docker-container
     ports:
-      - '8888:8888'
+      - '8080:8080'
+    restart: unless-stopped
     depends_on:
-      - mysql
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bitespeed
 
 volumes:
   db:

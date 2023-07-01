@@ -1,16 +1,24 @@
-# bitespeed-Identity-Reconciliation
-
-https://6cd5-2401-4900-1f26-7a3a-ec11-368b-f510-eb40.ngrok-free.app/bitespeed/identify
-
-Please hit above url to access service
+# bitespeed-Identity-Reconciliation #
 
 
-Sample request curl:
+
+### Steps to run service locally ###
+   * __Dependencies__: 
+        Docker installed and running with permission
+   * Run the following commands in your repo's root: `./app.sh`
+
+Alternative 
+   * `docker build -t identify-docker-image:latest .`
+   * `docker compose up`
+    
+**Now your service is running on localhost:8080**
+
+###Sample request curl##:
 ```
-curl --location 'https://6cd5-2401-4900-1f26-7a3a-ec11-368b-f510-eb40.ngrok-free.app/bitespeed/identify' \
+curl --location 'localhost:8080/bitespeed/identify' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"phoneNumber":"1234567890",
-"email": "abc@gmail.com"
+"phoneNumber":"9080870606",
+"email": "amazon@gmail.com"
 }'
 ```
