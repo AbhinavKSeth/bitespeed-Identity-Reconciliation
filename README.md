@@ -13,7 +13,7 @@ Alternative
     
 **Now your service is running on localhost:8080**
 
-###Sample request curl##:
+### Sample request curl ##:
 ```
 curl --location 'localhost:8080/bitespeed/identify' \
 --header 'Content-Type: application/json' \
