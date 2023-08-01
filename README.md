@@ -5,9 +5,9 @@
 ### Steps to run service locally ###
    * __Dependencies__: 
         Docker installed and running with permission
-   * Run the following commands in your repo's root: `./app.sh`
+   * Run `app.sh` file , present in the repo's root dir.
 
-Alternative 
+Alternative from your repo's root, run:
    * `docker build -t identify-docker-image:latest .`
    * `docker compose up`
     
